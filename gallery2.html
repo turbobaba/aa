@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Sưu Tập - ÁNH</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        /* LỚP 1: ẢNH NỀN LÀM MỜ */
+        .bg-blur {
+            position: fixed;
+            /* Tràn viền ra ngoài 1 chút để viền mờ không bị hở màu trắng */
+            top: -20px; left: -20px; right: -20px; bottom: -20px; 
+            
+            /* THAY TÊN ẢNH NỀN CỦA BẠN VÀO ĐÂY */
+            background-image: url('ttb.jpg'); 
+            background-size: cover;
+            background-position: center;
+            
+            /* Hiệu ứng làm mờ ảnh nền */
+            filter: blur(15px); 
+            z-index: -2;
+        }
+
+        /* LỚP 2: LỚP PHỦ TRẮNG (Giúp làm dịu ảnh nền để chữ dễ đọc hơn) */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.65);
+            z-index: -1;
+        }
+
+        /* KHỐI CHỨA 3 ẢNH PHÍA TRƯỚC */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px; /* Khoảng cách giữa các khối */
+        }
+
+        /* Bố cục từng hàng (Ảnh + Chữ bên cạnh) */
+        .item-row {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85); /* Hiệu ứng nền trắng hơi trong suốt */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            gap: 30px;
+            transition: transform 0.4s ease;
+        }
+
+        .item-row:hover {
+            transform: translateY(-8px); /* Hiệu ứng nảy lên nhẹ khi di chuột */
+        }
+
+        /* 3 ẢNH KÍCH THƯỚC BẰNG NHAU (Vuông) */
+        .item-img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            background-color: #000; /* Nền đen chờ load ảnh */
+            border-radius: 8px;
+            flex-shrink: 0; /* Đảm bảo ảnh không bị bóp méo */
+        }
+
+        /* Phần văn bản mô tả */
+        .item-text {
+            flex: 1;
+        }
+
+        .item-text h2 {
+            font-size: 22px;
+            color: rgb(179, 33, 57); /* Đỏ đô quen thuộc của bạn */
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .item-text p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        /* Responsive: Tự động xếp thành cột dọc khi xem trên điện thoại */
+        @media (max-width: 768px) {
+            .item-row {
+                flex-direction: column;
+                text-align: center;
+            }
+            .item-img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                aspect-ratio: 1/1; /* Giữ tỷ lệ vuông */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-blur"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="container">
+        
+        <div class="item-row">
+            <img src="tt1.jpg" alt="Ảnh 1" class="item-img">
+            <div class="item-text">
+                <h2>NHẬT BÌNH</h2>
+                <p>Áo Nhật Bình là lễ phục cao cấp của phụ nữ hoàng tộc triều Nguyễn, nổi bật với cổ áo lớn, dáng đối khâm và hoa văn thêu tinh xảo. Trang phục này thể hiện sự quyền quý, uy nghi và thường được sử dụng trong các dịp lễ nghi quan trọng.</p>
+            </div>
+        </div>
+
+        <div class="item-row">
+            <img src="tt2.jpg" alt="Ảnh 2" class="item-img">
+            <div class="item-text">
+                <h2>ÁO DÀI</h2>
+                <p>Áo dài truyền thống mang kiểu dáng quen thuộc với cổ cao, tay dài, tà áo dài xẻ hai bên, thường được may từ chất liệu mềm mại, tạo nên vẻ thanh lịch và tinh khôi. Đây là hình ảnh gần gũi, gắn liền với đời sống thường ngày và nét đẹp người phụ nữ Việt.</p>
+            </div>
+        </div>
+
+        <div class="item-row">
+            <img src="tt3.jpg" alt="Ảnh 3" class="item-img">
+            <div class="item-text">
+                <h2>ÁO TỨ THÂN</h2>
+                <p>Áo tứ thân là nét đẹp dịu dàng của văn hóa Việt Nam, gắn liền với hình ảnh người phụ nữ Bắc Bộ xưa. Với bốn thân áo mềm mại buông rủ, trang phục này không chỉ tôn lên vẻ duyên dáng, kín đáo mà còn thể hiện sự tần tảo, thủy chung và đức hi sinh. Thường được kết hợp cùng yếm đào và dải thắt lưng, áo tứ thân mang vẻ đẹp giản dị mà thanh nhã. Trải qua thời gian, tà áo ấy vẫn hiện diện như biểu tượng của hồn quê, nhắc nhở mỗi người về truyền thống và cội nguồn cần được gìn giữ, trân trọng.</p>
+            </div>
+        </div>
+
+          <h1 style="right: 30px;"><a href="index.html" style="text-decoration: none; color: rgb(179, 33, 57);">TRANG CHỦ</a></h1>
+
+    </div>
+    
+
+</body>
+</html>
